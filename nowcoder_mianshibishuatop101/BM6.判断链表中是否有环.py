@@ -1,5 +1,4 @@
 import traceback
-from typing import List
 
 
 class ListNode:
@@ -34,7 +33,7 @@ class Solution:
 
 
 # 哈希表
-class Solution:
+class Solution2:
     def hasCycle(self, head: ListNode) -> bool:
         # write code here
         if not head:
