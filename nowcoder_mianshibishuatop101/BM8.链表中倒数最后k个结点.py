@@ -1,6 +1,4 @@
-from cmath import phase
 import traceback
-from typing import List
 
 
 class ListNode:
@@ -9,70 +7,62 @@ class ListNode:
         self.next = None
 
 
-# 双指针
+# 快慢指针
+# 代码中的类名、方法名、参数名已经指定，请勿修改，直接返回方法规定的值即可
+#
+#
+# @param pHead ListNode类
+# @param k int整型
+# @return ListNode类
+#
 class Solution:
-    def EntryNodeOfLoop(self, pHead) -> ListNode:
+    def FindKthToTail(self, pHead: ListNode, k: int) -> ListNode:
         # write code here
         if not pHead:
             return None
         fast = slow = pHead
-        while fast:
-            if fast.next:
-                fast = fast.next.next
-            else:
+        for i in range(k):
+            if not fast:
                 return None
-            slow = slow.next
-            if fast == slow:
-                break
-        if not fast:
-            return None
-        fast = pHead
-        while fast != slow:
+            fast = fast.next
+        while fast:
             fast = fast.next
             slow = slow.next
-        return fast
+        return slow
 
 
-# 哈希表
-class Solution:
-    def EntryNodeOfLoop(self, pHead) -> ListNode:
+class Solution2:
+    def FindKthToTail(self, pHead: ListNode, k: int) -> ListNode:
         # write code here
-        if not pHead:
+        if not pHead or not k:
             return None
-        hashmap = set()
+        stack = list()
         while pHead:
-            if pHead in hashmap:
-                return pHead
-            hashmap.add(pHead)
+            stack.append(pHead)
             pHead = pHead.next
-        return None
+        if len(stack) < k:
+            return None
+        node = stack.pop()
+        for _ in range(k - 1):
+            cur = stack.pop()
+            cur.next = node
+            node = cur
+        return node
 
 
 while True:
     try:
         # 输入输出
-        lkd_list1, lkd_list2 = eval(input())
-        head1 = head2 = None
-        if lkd_list1:
-            head1 = ListNode(lkd_list1[0])
-            cur = head1
-            for i in range(1, len(lkd_list1)):
-                cur.next = ListNode(lkd_list1[i])
+        lkd_list, k = eval(input())
+        head = None
+        if lkd_list:
+            head = ListNode(lkd_list[0])
+            cur = head
+            for i in range(1, len(lkd_list)):
+                cur.next = ListNode(lkd_list[i])
                 cur = cur.next
-            tmp = cur
-        if lkd_list2:
-            head2 = ListNode(lkd_list2[0])
-            cur = head2
-            for i in range(1, len(lkd_list2)):
-                cur.next = ListNode(lkd_list2[i])
-                cur = cur.next
-            cur.next = head2
-        if lkd_list1:
-            tmp.next = head2
-        else:
-            head1 = head2
-        solution = Solution()
-        res = solution.EntryNodeOfLoop(head1)
+        solution = Solution2()
+        res = solution.FindKthToTail(head, k)
         print(res.val)
     except Exception as e:
         print(traceback.format_exc())

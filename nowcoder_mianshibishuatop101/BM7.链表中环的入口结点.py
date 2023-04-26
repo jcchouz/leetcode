@@ -34,7 +34,7 @@ class Solution:
 
 
 # 哈希表
-class Solution:
+class Solution2:
     def EntryNodeOfLoop(self, pHead) -> ListNode:
         # write code here
         if not pHead:
