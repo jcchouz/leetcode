@@ -1,5 +1,3 @@
-from calendar import c
-from email.quoprimime import header_decode
 import traceback
 from typing import List
 
