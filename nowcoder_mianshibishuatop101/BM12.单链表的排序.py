@@ -1,4 +1,3 @@
-from calendar import c
 import traceback
 from typing import List
 
@@ -12,12 +11,12 @@ class ListNode:
 def generateLinkedList(l: List[int]) -> ListNode:
     if not l:
         return None
-    head = ListNode(l[0])
-    cur = head
-    for i in range(1, len(l)):
-        cur.next = ListNode(l[i])
+    res = ListNode(-1)
+    cur = res
+    for val in l:
+        cur.next = ListNode(val)
         cur = cur.next
-    return head
+    return res.next
 
 
 # 归并排序
@@ -32,7 +31,8 @@ class Solution:
         # write code here
         if not head or not head.next:
             return head
-        fast = slow = head
+        fast = head.next
+        slow = head
         while fast and fast.next:
             fast = fast.next.next
             slow = slow.next
@@ -42,20 +42,43 @@ class Solution:
         r = self.sortInList(head2)
         res = ListNode(-1)
         cur = res
-        # while l and r:
-        #     if l.val<r.val:
-        #         cur.
-        pass
+        while l and r:
+            if l.val < r.val:
+                cur.next = l
+                l = l.next
+            else:
+                cur.next = r
+                r = r.next
+            cur = cur.next
+        cur.next = l if l else r
+        return res.next
+
+
+class Solution2:
+    def sortInList(self, head: ListNode) -> ListNode:
+        # write code here
+        if not head or not head.next:
+            return head
+        tmp = list()
+        while head:
+            tmp.append(head.val)
+            head = head.next
+        tmp.sort()
+        res = ListNode(-1)
+        cur = res
+        for val in tmp:
+            cur.next = ListNode(val)
+            cur = cur.next
+        return res.next
 
 
 while True:
     try:
         # 输入输出
-        l1, l2 = eval(input())
-        head1 = generateLinkedList(l1)
-        head2 = generateLinkedList(l2)
+        l = eval(input())
+        head = generateLinkedList(l)
         solution = Solution()
-        head_res = solution.addInList(head1, head2)
+        head_res = solution.sortInList(head)
         res = []
         while head_res:
             res.append(head_res.val)
