@@ -18,18 +18,13 @@ class TreeNode:
 #
 class Solution:
     def __init__(self):
+        sys.setrecursionlimit(3000)
         self.res = list()
 
-    def postorder(self, root: TreeNode):
+    def inorderTraversal(self, root: TreeNode) -> List[int]:
         if not root:
             return None
-        self.postorder(root.left)
-        self.postorder(root.right)
+        self.inorderTraversal(root.left)
+        self.inorderTraversal(root.right)
         self.res.append(root.val)
-
-    def postorderTraversal(self, root: TreeNode) -> List[int]:
-        if not root:
-            return None
-        sys.setrecursionlimit(3000)
-        self.postorder(root)
         return self.res

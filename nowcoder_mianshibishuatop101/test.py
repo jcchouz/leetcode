@@ -1,4 +1,7 @@
-a = [1, 2, 3]
-a.append(4)
-(a, b) = divmod(5, 2)
-print()
+import numpy as np
+
+x = np.arange(-10, 10, 0.1)
+y = 1.0 / (1.0 + np.exp(-x))
+
+print(x)
+print(y)

@@ -18,18 +18,13 @@ class TreeNode:
 #
 class Solution:
     def __init__(self):
+        sys.setrecursionlimit(3000)
         self.res = list()
-
-    def inorfer(self, root: TreeNode):
-        if not root:
-            return None
-        self.inorfer(root.left)
-        self.res.append(root.val)
-        self.inorfer(root.right)
 
     def inorderTraversal(self, root: TreeNode) -> List[int]:
         if not root:
             return None
-        sys.setrecursionlimit(3000)
-        self.inorfer(root)
+        self.inorderTraversal(root.left)
+        self.res.append(root.val)
+        self.inorderTraversal(root.right)
         return self.res
