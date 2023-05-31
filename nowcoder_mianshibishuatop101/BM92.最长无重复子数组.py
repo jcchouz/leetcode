@@ -43,7 +43,7 @@ while True:
         arr = eval(input())
         # .strip().split(",")
         solution = Solution()
-        # res = solution.maxLength(arr)
+        # ip2num = solution.maxLength(arr)
         res = solution.maxLength2(arr)
         print(res)
     except Exception as e:

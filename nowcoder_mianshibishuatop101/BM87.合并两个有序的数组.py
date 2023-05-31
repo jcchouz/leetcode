@@ -7,9 +7,9 @@
 while True:
     try:
         # 输入输出
-        strs = input().strip().split('],[')
-        A = list(map(int, strs[0][1:].split(',')))
-        B = list(map(int, strs[1][:-1].split(',')))
+        strs = input().strip().split("],[")
+        A = list(map(int, strs[0][1:].split(",")))
+        B = list(map(int, strs[1][:-1].split(",")))
         m = len(A)
         n = len(B)
         A += [0 for _ in range(n)]
@@ -76,7 +76,7 @@ while True:
 #             n = len(B)
 #             A += [0 for _ in range(n)]
 #             solution = Solution()
-#             res = solution.merge(A, m, B, n)
+#             ip2num = solution.merge(A, m, B, n)
 #         except:
 #             print("error.")
 #             break
