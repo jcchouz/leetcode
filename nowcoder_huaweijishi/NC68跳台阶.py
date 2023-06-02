@@ -11,8 +11,8 @@
 #
 # while True:
 #     try:
-#         num = eval(input())
-#         print(jumpFloor(num))
+#         n = eval(input())
+#         print(jumpFloor(n))
 #     except Exception as e:
 #         print(e)
 #         break
