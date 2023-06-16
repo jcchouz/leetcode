@@ -15,22 +15,20 @@ class Solution:
         # write code here
         if not pHead:
             return None
-        fast = slow = pHead
+        slow = fast = pHead
         while fast:
-            if fast.next:
+            slow = slow.next
+            if fast.next and fast.next.next:
                 fast = fast.next.next
             else:
                 return None
-            slow = slow.next
             if fast == slow:
                 break
-        if not fast:
-            return None
-        fast = pHead
-        while fast != slow:
-            fast = fast.next
+        slow = pHead
+        while slow != fast:
             slow = slow.next
-        return fast
+            fast = fast.next
+        return slow
 
 
 # 哈希表
