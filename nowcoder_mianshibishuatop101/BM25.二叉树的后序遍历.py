@@ -21,10 +21,10 @@ class Solution:
         sys.setrecursionlimit(3000)
         self.res = list()
 
-    def inorderTraversal(self, root: TreeNode) -> List[int]:
+    def postorderTraversal(self, root: TreeNode) -> List[int]:
         if not root:
             return None
-        self.inorderTraversal(root.left)
-        self.inorderTraversal(root.right)
+        self.postorderTraversal(root.left)
+        self.postorderTraversal(root.right)
         self.res.append(root.val)
         return self.res
