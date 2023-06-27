@@ -58,7 +58,7 @@ class TreeNode:
 #         self.dfs(0, 0, len(vinOrder) - 1, preOrder, vinOrder)
 
 """
-public class Solution1 {
+public class Solution {
     public TreeNode reConstructBinaryTree(int [] pre,int [] vin) {
         int len = pre.length;
         if(len == 0) {
