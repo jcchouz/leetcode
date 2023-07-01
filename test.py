@@ -1,2 +1,3 @@
-a = input()
-print(int(a, 16))
+a = [1, 2, 3, 4]
+print(a.pop())
+print(a)

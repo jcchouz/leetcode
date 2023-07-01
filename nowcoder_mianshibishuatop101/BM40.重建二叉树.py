@@ -57,35 +57,29 @@ class TreeNode:
 #     ) -> TreeNode:
 #         self.dfs(0, 0, len(vinOrder) - 1, preOrder, vinOrder)
 
-"""
-public class Solution1 {
-    public TreeNode reConstructBinaryTree(int [] pre,int [] vin) {
-        int len = pre.length;
-        if(len == 0) {
-            return null;
-        }
-        TreeNode ret = new TreeNode(pre[0]);
-        Stack<TreeNode> stack = new Stack<>();
-        TreeNode cur = ret;
-        int j = 0;
-        for(int i = 1; i < len; i++) {
-            if(cur.val != vin[j]) {
-                // 到达最左端
-                cur.left = new TreeNode(pre[i]);
-                stack.push(cur);
-                cur = cur.left;
-            } else {
-                j++;
-                // 找到合适的祖先
-                while(!stack.isEmpty() && stack.peek().val == vin[j]) {
-                    cur = stack.pop();
-                    j++;
-                }
-                cur.right = new TreeNode(pre[i]);
-                cur = cur.right;
-            }
-        }
-        return ret;
-    }
-}
-"""
+
+# 栈
+class Solution:
+    def reConstructBinaryTree(
+        self, preOrder: List[int], vinOrder: List[int]
+    ) -> TreeNode:
+        # write code here
+        if not preOrder:
+            return None
+        s = list()
+        res = TreeNode(preOrder[0])
+        cur = res
+        j = 0
+        for i in range(1, len(preOrder)):
+            if cur.val != vinOrder[j]:
+                s.append(cur)
+                cur.left = TreeNode(preOrder[i])
+                cur = cur.left
+            else:
+                j += 1
+                while len(s) and s[-1].val == vinOrder[j]:
+                    cur = s.pop()
+                    j += 1
+                cur.right = TreeNode(preOrder[i])
+                cur = cur.right
+        return res
