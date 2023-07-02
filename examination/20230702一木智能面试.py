@@ -42,6 +42,7 @@ new_json = {
 #         elif isinstance(old_value,dict) and isinstance(new_value,dict):
 #             diff_tmp = diff(old_value, new_value)
 # 			diffres.extend([{'type':d['type'], 'key':key+'/'+d['key'],'old_value':d.get('old_value'), 'new_value':d.get('new_value')} for d in diff_tmp])
+#         # 注意，一定要先比较类型再比较值，假设old_value=true,new_value=1，这两个其实是一样的，但如果直接比较值是不一样的，就错了
 #         elif type(old_value) == type(new_value) and old_value != new_value:
 #             diffres.append({'type':'replace', 'key':key, 'old_value':old_value, 'new_value':new_value})
 #     for key in new_json:
