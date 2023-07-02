@@ -1,4 +1,6 @@
 '''
+又是在code.meideng.dev（Code Here）这个平台做的
+https://code.meideng.dev/16882955376553279
 实现一个json diff工具，用于比较两个json的不同。
 
 以简化问题，规定json object支持的类型只有：bool，string，int以及另一个json object。例如：
